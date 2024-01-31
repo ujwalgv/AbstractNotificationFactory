@@ -20,6 +20,7 @@ public class EmailNotificationFactory extends NotificationFactory {
         return new EmailNotificationSender(notification);
     }
     public  NotificationTemplate createtemplate(String message){
+
         return new EmailNotificationTemplate(message);
     }
     
