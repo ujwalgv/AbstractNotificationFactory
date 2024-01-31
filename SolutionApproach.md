@@ -1,18 +1,18 @@
 # Abstract Factory Pattern Implementation Guide
 
 ## Step 1: Understand the Abstract Factory
-
+- Walk through the given abstract `NotificationFactory` class provided in the assignment. This contains the abstract method of `notificationType()`.
+- Now as per `TASK-1`, you will need to add the factory methods to create the **notification**, **templates**, and **senders** to the abstract factory class.
 - **NotificationFactory Class:**
-  - Examine the abstract methods in the `NotificationFactory` class:
-    - `notificationType()`: Returns the type of notification.
+  So add the below abstract methods -
     - `createNotification(...)`: Creates a notification instance.
     - `createSenders(...)`: Creates a sender instance.
     - `createTemplate(...)`: Creates a template instance.
 
 ## Step 2: Implement EmailNotificationFactory
 
-- **Create EmailNotificationFactory Class:**
-  - Create a new class called `EmailNotificationFactory` that extends `NotificationFactory`.
+- **EmailNotificationFactory Class:**
+  - Make the `EmailNotificationFactory` extend the `NotificationFactory`.
   - Implement the abstract methods:
 
     ```java
@@ -42,8 +42,8 @@
 
 ## Step 3: Implement PushNotificationFactory
 
-- **Create PushNotificationFactory Class:**
-  - Similarly, create a new class called `PushNotificationFactory` that extends `NotificationFactory`.
+- **PushNotificationFactory Class:**
+  - Similarly, implement the `PushNotificationFactory` by extending the `NotificationFactory`
   - Implement the abstract methods:
 
     ```java
@@ -70,69 +70,3 @@
         }
     }
     ```
-
-## Step 4: Implement Concrete Classes
-
-- **Create Concrete Classes:**
-  - Implement the concrete classes for email and push notifications, senders, and templates.
-  - Example:
-
-    ```java
-    // Email Notification
-    public class EmailNotification extends Notification {
-        // Implementation specific to email notifications
-    }
-
-    public class EmailNotificationSender extends NotificationSender {
-        // Implementation specific to email notification senders
-    }
-
-    public class EmailNotificationTemplate extends NotificationTemplate {
-        // Implementation specific to email notification templates
-    }
-
-    // Push Notification
-    public class PushNotification extends Notification {
-        // Implementation specific to push notifications
-    }
-
-    public class PushNotificationSender extends NotificationSender {
-        // Implementation specific to push notification senders
-    }
-
-    public class PushNotificationTemplate extends NotificationTemplate {
-        // Implementation specific to push notification templates
-    }
-    ```
-
-## Step 5: Test the Implementation
-
-- **Create Test Cases:**
-  - Develop test cases to ensure that your factories create compatible components within the same family.
-  - Example:
-
-    ```java
-    public class NotificationFactoryTest {
-
-        public static void main(String[] args) {
-            // Test Email Notification Factory
-            NotificationFactory emailFactory = new EmailNotificationFactory();
-            NotificationType emailType = emailFactory.notificationType();
-            Notification emailNotification = emailFactory.createNotification("john@example.com", "admin@example.com", emailFactory.createTemplate("Hello, John!"));
-            NotificationSender emailSender = emailFactory.createSenders(emailNotification);
-
-            // Test Push Notification Factory
-            NotificationFactory pushFactory = new PushNotificationFactory();
-            NotificationType pushType = pushFactory.notificationType();
-            Notification pushNotification = pushFactory.createNotification("john@example.com", "admin@example.com", pushFactory.createTemplate("Hello, John!"));
-            NotificationSender pushSender = pushFactory.createSenders(pushNotification);
-
-            // Additional tests...
-        }
-    ```
-
-## Step 6: Run Tests
-
-- **Verify the Implementation:**
-  - Run your test cases to ensure that the factories create the expected components and that they are compatible within their respective families.
-  - Check if the notifications can be sent successfully using the created senders.
